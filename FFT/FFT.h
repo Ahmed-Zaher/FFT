@@ -30,10 +30,8 @@ private:
 
 		vector<Complex> ret(N);
 
-		for (int i = 0; i < (N >> 1); ++i) {
-			ret[i] = E_FFT[i] + O_FFT[i] * W[LOGN][i];
-			ret[i + (N >> 1)] = E_FFT[i] * W[LOGN][i + (N >> 1)] + O_FFT[i];
-		}
+		for (int i = 0; i < N; ++i)
+			ret[i] = E_FFT[i % (N >> 1)] + W[LOGN][i] * O_FFT[i % (N >> 1)];
 
 		return ret;
 
